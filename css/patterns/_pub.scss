@@ -1,0 +1,24 @@
+.contain-ad {
+	position: relative;
+	&.fixed-pub .pub {
+		position: fixed;
+		top: 0;
+	}
+	&.bottom-pub .pub {
+		top: initial;
+		bottom: 120px;
+	}
+	.pub {
+		display: none;
+		@media screen and (min-width: $desktop-small) {
+			display: block;
+		}
+	}
+}
+
+.pub {
+	position: absolute;
+	top: 120px;
+	right: 150px;
+	line-height: 0;
+}

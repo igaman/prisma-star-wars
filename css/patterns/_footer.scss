@@ -1,0 +1,73 @@
+.footer {
+	padding: 20px;
+	color: #9b9b9b;
+	background: url('#{$images-url}/darthvader.jpg') center  0 no-repeat #181818;
+	@include image-2x('#{$images-url}/darthvader_2x.jpg');
+	a {
+		font-size: 14px;
+		color: #9b9b9b;
+	}
+	@media screen and (min-width: $desktop-small) {
+		padding: 20px 150px;
+	}
+}
+.copyright {
+	display: none;
+	text-align: center;
+	padding: 20px 0;
+	font-size: 18px;
+	@media screen and (min-width: $mobile-small) {
+		display: block;
+	}
+}
+.footer__container {
+	max-width: 1260px;
+	margin: auto;
+}
+
+.footer__links {
+	line-height: 36px;
+	&--center {
+		text-align: center;
+	}
+}
+
+.follow-title {
+	float: left;
+	line-height: 25px;
+	font-size: 14px;
+	text-transform: uppercase;
+	@media screen and (min-width: $tablet-medium) {
+		float: none;
+		line-height: 40px;
+		text-align: center;
+		display: block;
+	}
+	@media screen and (min-width: $desktop-small) {
+		display: inline;
+		margin-bottom: 20px;
+	}
+}
+
+.social-media {
+	margin-bottom: 0;
+	li, a, svg {
+		display: block;
+		height: 25px;
+		width: 25px;
+		@media screen and (min-width: $tablet-medium) {
+			height: 40px;
+			width: 40px;
+		}
+	}
+	li {
+		display: inline-block;
+		margin: 0 5px;
+		@media screen and (min-width: $tablet-medium) {
+			margin: 0 10px;
+		}
+	}
+	svg {
+		fill: #9b9b9b;
+	}
+}

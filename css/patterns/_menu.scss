@@ -1,0 +1,124 @@
+body {
+	&.menu-active {
+		overflow-y: hidden;
+	}
+}
+
+.navigation {
+	display: none;
+	z-index: 998;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	line-height: 50px;
+	@media screen and (min-width: $desktop-small) {
+		display: block;
+		height: 68px;
+		line-height: 68px;
+	}
+}
+
+.navigation-container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	@media screen and (min-width: $desktop-small) {
+		height: 68px;
+	}
+}
+
+.menu {
+	display: none;
+	opacity: 0;
+	height: 100%;
+	padding: 30px;
+	background: url('#{$images-url}/header-bg.png');
+	color: $lightcolor;
+	font-size: 18px;
+	text-align: center;
+	transition: opacity 0.5s;
+	-webkit-transition: opacity 0.5s;
+	&.active {
+		opacity: 1;
+	}
+	@media screen and (min-width: $desktop-small) {
+		display: block;
+		opacity: 1;
+		height: 68px;
+		padding: 0;
+		background: rgba(0,0,0, 0.75);
+	}
+	li {
+		display: block;
+		text-transform: uppercase;
+		font-weight: bold;
+		padding: 0 20px;
+		font-weight: 500;
+		@media screen and (min-width: $desktop-small) {
+			display: inline;
+			transition: opacity 0s;
+			-webkit-transition: opacity 0s;
+		}
+		a {
+			color: $lightcolor;
+			text-decoration: none;
+			&:hover {
+				border-bottom: 2px solid $lightcolor;
+			}
+		}
+	}
+}
+
+.icon-menu {
+	fill: $lightcolor;
+}
+.button__menu {
+	z-index: 999;
+	height: 46px;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+	&:hover,&:focus {
+		background: rgba(0, 0, 0, 0.5);
+	}
+}
+.button__menu-open {
+	opacity: 0;
+	position: fixed;
+	top: 10px;
+	right: 10px;
+	height: 46px;
+	padding-top: 8px;
+	transition: opacity 0.5s;
+	-webkit-transition: opacity 0.5s;
+	&.active {
+		display: block;
+		opacity: 1;
+		-webkit-transition: opacity 3s;
+		@media screen and (min-width: $desktop-small) {
+			display: none;
+			opacity: 0;
+			transition: opacity 0s;
+			-webkit-transition: opacity 0s;
+		}
+	}
+}
+.button__menu-close {
+	display: none;
+	opacity: 0;
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	transition: opacity 1.5s;
+	-webkit-transition: opacity 1.5s;
+	&.active {
+		opacity: 1;
+		transition: opacity 1.5s;
+		-webkit-transition: opacity 1.5s;
+		@media screen and (min-width: $desktop-small) {
+			display: none;
+			opacity: 0;
+			transition: opacity 0s;
+			-webkit-transition: opacity 0s;
+		}
+	}
+}

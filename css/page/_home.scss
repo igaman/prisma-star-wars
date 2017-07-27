@@ -1,0 +1,139 @@
+.logo {
+	width: 100%;
+	height: auto;
+	max-width: 900px;
+}
+
+.star-bg {
+	position: relative;
+	height: 400px;
+	overflow: hidden;
+	text-align: center;
+	background: url('#{$images-url}/header-bg.png') center 0 repeat-y fixed #000;
+	background-size: contain;
+	@include image-2x('#{$images-url}/header-bg-2x.png');
+	@media screen and (min-width: $tablet-medium) {
+		height: 618px;
+	}
+	.main-title {
+		position: relative;
+		padding-top: 130px;
+		height: 400px;
+		margin-bottom: 0;
+		@media screen and (min-width: $tablet-medium) {
+			padding-top: 150px;
+			height: 618px;
+		}
+	}
+}
+
+.small-title {
+	font-size: 18px;
+	@media screen and (min-width: $tablet-medium) {
+		font-size: 22px;
+	}
+}
+
+.center-title {
+	text-align: center;
+	font-size: 40px;
+	margin-bottom: 40px;
+	@media screen and (min-width: $tablet-medium) {
+		font-size: 36px;
+	}
+}
+
+.article {
+	max-width: 1260px;
+	margin: 0 auto;
+	padding: 20px;
+	color: #000;
+	@media screen and (min-width: $desktop-small) {
+		padding: 120px 150px;
+	}
+	&--small-pad {
+		padding: 20px;
+		@media screen and (min-width: $desktop-small) {
+			padding: 80px 150px;
+		}
+	}
+	&__half {
+		width: 100%;
+		text-align: center;
+		p {
+			font-size: 19px;
+			line-height: 26px;
+			@media screen and (min-width: $desktop-small) {
+				font-size: 18px;
+				line-height: 24px;
+			}
+		}
+		@media screen and (min-width: $desktop-small) {
+			width: 50%;
+			text-align: left;
+		}
+	}
+}
+
+.droid-block {
+	position: relative;
+	overflow: hidden;
+	p {
+		font-size: 15px;
+		padding-right: 50px;
+		line-height: 30px;
+		@media screen and (min-width: $tablet-medium) {
+			font-size: 12px;
+			line-height: 24px;
+		}
+	}
+}
+
+.container {
+	position: relative;
+}
+
+.full-image-bloc {
+	line-height: 0;
+	padding-top: 100%;
+	width: 100%;
+	&.kylo {
+		background: url('#{$images-url}/kiloren.jpg') center center / cover no-repeat;
+		@include image-2x('#{$images-url}/kiloren-2x.jpg');
+		@media screen and (min-width: $mobile-small) {
+			padding-top: 50%;
+		}
+	}
+	&.stormtroopers {
+		height: 250px;
+		padding-top: 0;
+		background: url('#{$images-url}/stormtroopers.jpg') center center / cover no-repeat;
+		@include image-2x('#{$images-url}/stormtroopers-2x.jpg');
+		@media screen and (min-width: $mobile-small) {
+			height: 308px;
+		}
+	}
+}
+
+.full-image {
+	width: 100%;
+	height: auto;
+}
+
+.img-square {
+	width: 100%;
+	height: auto;
+	padding: 0 0 20px 0;
+	@media screen and (min-width: $tablet-medium) {
+		padding: 0 20px 20px 0;
+		max-width: 390px;
+		width: 100%;
+		height: auto;
+	}
+}
+
+.left {
+	@media screen and (min-width: $tablet-medium) {
+		float: left;
+	}
+}
