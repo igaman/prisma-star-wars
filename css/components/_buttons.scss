@@ -29,7 +29,7 @@ button:focus,
 button:active,
 .button:active { // Target the :active pseudo-class
 	color: $lightcolor;
-	background: $maincolor;
+	background: transparent;
 	transform: translateY(1px);
 }
 
