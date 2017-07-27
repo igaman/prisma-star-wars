@@ -25,4 +25,4 @@ Here is the star wars project for Prisma. It includes starallax.js a JavaScript 
 * take index.html, the src/ folder and the dist/ folder.
 
 ###Demo
-*(http://polarfront.fr/starwars/)
+* (http://polarfront.fr/starwars/)
