@@ -2,7 +2,7 @@
 	position: relative;
 	&.fixed-pub .pub {
 		position: fixed;
-		top: 0;
+		top: 68px;
 	}
 	&.bottom-pub .pub {
 		top: initial;
