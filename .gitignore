@@ -8,3 +8,5 @@
 node_modules/
 styleguide/
 bower_components/
+package.json
+package-lock.json
