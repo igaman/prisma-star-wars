@@ -6,7 +6,6 @@ const extractCSS =  new ExtractTextPlugin('bundle.css', {
 	allChunks: true
 	});
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-//webpack-dev-server --hot --inline --content-base ./
 
 module.exports = {
 	entry: {
