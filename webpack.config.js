@@ -6,11 +6,10 @@ const extractCSS =  new ExtractTextPlugin('bundle.css', {
 	allChunks: true
 	});
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-//webpack-dev-server --hot --inline --content-base ./
 
 module.exports = {
 	entry: {
-		app: ['./css/main.scss','./js/main.js']
+		app: ['./css/main.scss','./js/main.js', './index.html']
 	},
 	output: {
 		path: __dirname + '/dist/',
@@ -38,6 +37,15 @@ module.exports = {
 				options: {
 					limit: 10000
 				}
+			},
+			{
+				test: /\.html$/,
+				use: [{
+					loader: 'html-loader',
+					options: {
+						minimize: true
+					}
+				}]
 			}
 		]
 	},
