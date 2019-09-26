@@ -1,0 +1,39 @@
+.grid-container {
+  border-left: solid 2px black;
+  border-right: solid 2px black;
+}
+
+.row {
+  min-height: 150px;
+  margin-bottom: $gutter-space + 0px;
+
+  > * {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 800;
+
+    &:nth-of-type(2n) {
+      background: blue;
+      color: white;
+    }
+
+    &:nth-of-type(2n + 1) {
+      background: yellow;
+      color: black;
+    }
+  }
+}
+
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    position: relative;
+
+    &::before {
+      content: "#{$i}";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
