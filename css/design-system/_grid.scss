@@ -22,22 +22,9 @@ $gutter-space-large: 24;
   $maxCols: 12;
   $widthModifier: $maxCols / $cols;
   $width: (100% / $widthModifier);
-
-  padding: $padding;
-  @media screen and (min-width: (map-get($breakpoint, large) + 0px)) {
-    padding: $padding;
-  }
   width: $width;
 
   @if $sideCuts {
-    &:nth-child(n) {
-      padding: $padding;
-      //responsive gutter material
-      @media screen and (min-width: (map-get($breakpoint, large) + 0px)) {
-        padding: 0 ($gutter-space-large / 2 + 0px);
-      }
-    }
-
     @if $widthModifier % 1 == 0 {
       &:nth-child(#{$widthModifier}n + 1) {
         padding-left: 0;
@@ -50,12 +37,19 @@ $gutter-space-large: 24;
   }
 }
 
-  .row {
-    @include gridContainer;
+[class^='col-'] {
+  padding: 0 ($gutter-space / 2 + 0px);
+  @media screen and (min-width: (map-get($breakpoint, large) + 0px)) {
+    padding: 0 ($gutter-space-large / 2 + 0px);
   }
+}
 
-  @for $i from 1 through 12 {
-    .col-#{$i} {
-      @include grid($i, $sideCuts: false, $padding: 0 ($gutter-space / 2 + 0px));
-    }
+.row {
+  @include gridContainer;
+}
+
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    @include grid($i);
   }
+}
