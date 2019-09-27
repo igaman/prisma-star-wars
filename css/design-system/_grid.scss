@@ -1,12 +1,15 @@
 @charset "UTF-8";
 
-$breakpoint: (
+$dimension: (
   mobile: 0,
   tablet: 768,
   desktop: 1024,
   large: 1280
 );
-//get variable => map-get($map, key);
+
+$tablet-breakpoint: map-get($dimension, tablet) + 0px;
+$desktop-breakpoint: map-get($dimension, desktop) + 0px;
+$large-breakpoint: map-get($dimension, large) + 0px;
 
 //dimension of the gutters in pixels
 $gutter-space: 16;
@@ -18,11 +21,13 @@ $gutter-space-large: 24;
   width: 100%;
 }
 
-@mixin grid($cols, $sideCuts: true, $padding: 0 ($gutter-space / 2 + 0px)) {
+@mixin grid($cols, $sideCuts: true, $takeWidth: true) {
   $maxCols: 12;
   $widthModifier: $maxCols / $cols;
   $width: (100% / $widthModifier);
-  width: $width;
+  @if $takeWidth {
+    width: $width;
+  }
 
   @if $sideCuts {
     @if $widthModifier % 1 == 0 {
@@ -37,10 +42,32 @@ $gutter-space-large: 24;
   }
 }
 
-[class^='col-'] {
+@mixin sidecuts($cols, $sideCuts: true) {
+  $maxCols: 12;
+  $widthModifier: $maxCols / $cols;
+  $width: (100% / $widthModifier);
+
+  @if $sideCuts {
+    @if $widthModifier % 1 == 0 {
+      &:nth-child(#{$widthModifier}n + 1) {
+        padding-left: 0;
+      }
+
+      &:nth-child(#{$widthModifier}n) {
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+[class^="col-"] {
   padding: 0 ($gutter-space / 2 + 0px);
-  @media screen and (min-width: (map-get($breakpoint, large) + 0px)) {
+  @media screen and (min-width: $large-breakpoint) {
     padding: 0 ($gutter-space-large / 2 + 0px);
+  }
+  //ng for no-gutters
+  &.ng {
+    padding: 0;
   }
 }
 
@@ -50,6 +77,37 @@ $gutter-space-large: 24;
 
 @for $i from 1 through 12 {
   .col-#{$i} {
-    @include grid($i);
+    @include grid($i, $sideCuts: false);
+    //sc for sidecuts
+    &.sc {
+      @include grid($i, $sideCuts: true, $takeWidth: false);
+    }
+
+    &-tab {
+      @media screen and (min-width: $tablet-breakpoint) {
+        @include grid($i, $sideCuts: false);
+        &.sc {
+          @include grid($i, $sideCuts: true, $takeWidth: false);
+        }
+      }
+    }
+
+    &-desk {
+      @media screen and (min-width: $desktop-breakpoint) {
+        @include grid($i, $sideCuts: false);
+        &.sc {
+          @include grid($i, $sideCuts: true, $takeWidth: false);
+        }
+      }
+    }
+
+    &-xl {
+      @media screen and (min-width: $large-breakpoint) {
+        @include grid($i, $sideCuts: false);
+        &.sc {
+          @include grid($i, $sideCuts: true, $takeWidth: false);
+        }
+      }
+    }
   }
 }
