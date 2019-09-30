@@ -21,31 +21,11 @@ $gutter-space-large: 24;
   width: 100%;
 }
 
-@mixin grid($cols, $sideCuts: true, $takeWidth: true) {
+@mixin grid($cols, $sideCuts: true) {
   $maxCols: 12;
   $widthModifier: $maxCols / $cols;
   $width: (100% / $widthModifier);
-  @if $takeWidth {
-    width: $width;
-  }
-
-  @if $sideCuts {
-    @if $widthModifier % 1 == 0 {
-      &:nth-child(#{$widthModifier}n + 1) {
-        padding-left: 0;
-      }
-
-      &:nth-child(#{$widthModifier}n) {
-        padding-right: 0;
-      }
-    }
-  }
-}
-
-@mixin sidecuts($cols, $sideCuts: true) {
-  $maxCols: 12;
-  $widthModifier: $maxCols / $cols;
-  $width: (100% / $widthModifier);
+  width: $width;
 
   @if $sideCuts {
     @if $widthModifier % 1 == 0 {
@@ -72,42 +52,79 @@ $gutter-space-large: 24;
 }
 
 .row {
+  &>:first-child {
+    padding-left: 0;
+  }
+  &>:last-child {
+    padding-right: 0;
+  }
   @include gridContainer;
 }
 
 @for $i from 1 through 12 {
   .col-#{$i} {
-    @include grid($i, $sideCuts: false);
-    //sc for sidecuts
-    &.sc {
-      @include grid($i, $sideCuts: true, $takeWidth: false);
-    }
+    @include grid($i);
+  }
+}
 
-    &-tab {
-      @media screen and (min-width: $tablet-breakpoint) {
-        @include grid($i, $sideCuts: false);
-        &.sc {
-          @include grid($i, $sideCuts: true, $takeWidth: false);
-        }
-      }
+@for $i from 1 through 12 {
+  .col-#{$i}-mt {
+    @media screen and (max-width: ($tablet-breakpoint - 1px)) {
+      @include grid($i);
     }
+  }
 
-    &-desk {
-      @media screen and (min-width: $desktop-breakpoint) {
-        @include grid($i, $sideCuts: false);
-        &.sc {
-          @include grid($i, $sideCuts: true, $takeWidth: false);
-        }
-      }
+  .col-#{$i}-md {
+    @media screen and (max-width: ($desktop-breakpoint - 1px)) {
+      @include grid($i);
     }
+  }
 
-    &-xl {
-      @media screen and (min-width: $large-breakpoint) {
-        @include grid($i, $sideCuts: false);
-        &.sc {
-          @include grid($i, $sideCuts: true, $takeWidth: false);
-        }
-      }
+  .col-#{$i}-ml {
+    @media screen and (max-width: ($large-breakpoint - 1px)) {
+      @include grid($i);
+    }
+  }
+}
+
+@for $i from 1 through 12 {
+  .col-#{$i}-tab {
+    @media screen and (min-width: $tablet-breakpoint) {
+      @include grid($i);
+    }
+  }
+
+  .col-#{$i}-tab-md {
+    @media screen and (min-width: $tablet-breakpoint) and (max-width: ($desktop-breakpoint - 1px)) {
+      @include grid($i);
+    }
+  }
+
+  .col-#{$i}-tab-ml {
+    @media screen and (min-width: $tablet-breakpoint) and (max-width: ($large-breakpoint - 1px)) {
+      @include grid($i);
+    }
+  }
+}
+
+@for $i from 1 through 12 {
+  .col-#{$i}-desk {
+    @media screen and (min-width: $desktop-breakpoint) {
+      @include grid($i);
+    }
+  }
+
+  .col-#{$i}-desk-ml {
+    @media screen and (min-width: $desktop-breakpoint) and (max-width: ($large-breakpoint - 1px)) {
+      @include grid($i);
+    }
+  }
+}
+
+@for $i from 1 through 12 {
+  .col-#{$i}-xl {
+    @media screen and (min-width: $large-breakpoint) {
+      @include grid($i);
     }
   }
 }
