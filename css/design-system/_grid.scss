@@ -17,8 +17,16 @@ $gutter-space-large: 24;
 
 @mixin gridContainer() {
   display: flex;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  width: 100%;
+  box-sizing: border-box;
 }
 
 @mixin grid($cols, $sideCuts: true) {
@@ -26,23 +34,13 @@ $gutter-space-large: 24;
   $widthModifier: $maxCols / $cols;
   $width: (100% / $widthModifier);
   width: $width;
-
-  @if $sideCuts {
-    @if $widthModifier % 1 == 0 {
-      &:nth-child(#{$widthModifier}n + 1) {
-        padding-left: 0;
-      }
-
-      &:nth-child(#{$widthModifier}n) {
-        padding-right: 0;
-      }
-    }
-  }
+  box-sizing: border-box;
+  flex: 0 0 auto;
 }
 
 [class^="col-"] {
   padding: 0 ($gutter-space / 2 + 0px);
-  @media screen and (min-width: $large-breakpoint) {
+  @media (min-width: $large-breakpoint) {
     padding: 0 ($gutter-space-large / 2 + 0px);
   }
   //ng for no-gutters
@@ -51,13 +49,10 @@ $gutter-space-large: 24;
   }
 }
 
+//delete gutter for first and last child
 .row {
-  &>:first-child {
-    padding-left: 0;
-  }
-  &>:last-child {
-    padding-right: 0;
-  }
+  margin-right: -12px;
+  margin-left: -12px;
   @include gridContainer;
 }
 
@@ -69,19 +64,19 @@ $gutter-space-large: 24;
 
 @for $i from 1 through 12 {
   .col-#{$i}-mt {
-    @media screen and (max-width: ($tablet-breakpoint - 1px)) {
+    @media (max-width: ($tablet-breakpoint - 1px)) {
       @include grid($i);
     }
   }
 
   .col-#{$i}-md {
-    @media screen and (max-width: ($desktop-breakpoint - 1px)) {
+    @media (max-width: ($desktop-breakpoint - 1px)) {
       @include grid($i);
     }
   }
 
   .col-#{$i}-ml {
-    @media screen and (max-width: ($large-breakpoint - 1px)) {
+    @media (max-width: ($large-breakpoint - 1px)) {
       @include grid($i);
     }
   }
@@ -89,19 +84,19 @@ $gutter-space-large: 24;
 
 @for $i from 1 through 12 {
   .col-#{$i}-tab {
-    @media screen and (min-width: $tablet-breakpoint) {
+    @media (min-width: $tablet-breakpoint) {
       @include grid($i);
     }
   }
 
   .col-#{$i}-tab-md {
-    @media screen and (min-width: $tablet-breakpoint) and (max-width: ($desktop-breakpoint - 1px)) {
+    @media (min-width: $tablet-breakpoint) and (max-width: ($desktop-breakpoint - 1px)) {
       @include grid($i);
     }
   }
 
   .col-#{$i}-tab-ml {
-    @media screen and (min-width: $tablet-breakpoint) and (max-width: ($large-breakpoint - 1px)) {
+    @media (min-width: $tablet-breakpoint) and (max-width: ($large-breakpoint - 1px)) {
       @include grid($i);
     }
   }
@@ -109,13 +104,13 @@ $gutter-space-large: 24;
 
 @for $i from 1 through 12 {
   .col-#{$i}-desk {
-    @media screen and (min-width: $desktop-breakpoint) {
+    @media (min-width: $desktop-breakpoint) {
       @include grid($i);
     }
   }
 
   .col-#{$i}-desk-ml {
-    @media screen and (min-width: $desktop-breakpoint) and (max-width: ($large-breakpoint - 1px)) {
+    @media (min-width: $desktop-breakpoint) and (max-width: ($large-breakpoint - 1px)) {
       @include grid($i);
     }
   }
@@ -123,7 +118,7 @@ $gutter-space-large: 24;
 
 @for $i from 1 through 12 {
   .col-#{$i}-xl {
-    @media screen and (min-width: $large-breakpoint) {
+    @media (min-width: $large-breakpoint) {
       @include grid($i);
     }
   }
