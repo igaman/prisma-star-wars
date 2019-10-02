@@ -15,6 +15,10 @@ $large-breakpoint: map-get($dimension, large) + 0px;
 $gutter-space: 16;
 $gutter-space-large: 24;
 
+.grid-container {
+  overflow: hidden;
+}
+
 @mixin gridContainer() {
   display: flex;
   -webkit-box-flex: 0;
@@ -51,9 +55,24 @@ $gutter-space-large: 24;
 
 //delete gutter for first and last child
 .row {
-  margin-right: -12px;
-  margin-left: -12px;
+  margin-right: -($gutter-space / 2 + 0px) ;
+  margin-left: -($gutter-space / 2 + 0px) ;
+
+  @media (min-width: $large-breakpoint) {
+    margin-right: -($gutter-space-large / 2 + 0px) ;
+    margin-left: -($gutter-space-large / 2 + 0px) ;
+  }
+
   @include gridContainer;
+
+  &.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+    & > [class^="col-"] {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
 }
 
 @for $i from 1 through 12 {
@@ -63,40 +82,8 @@ $gutter-space-large: 24;
 }
 
 @for $i from 1 through 12 {
-  .col-#{$i}-mt {
-    @media (max-width: ($tablet-breakpoint - 1px)) {
-      @include grid($i);
-    }
-  }
-
-  .col-#{$i}-md {
-    @media (max-width: ($desktop-breakpoint - 1px)) {
-      @include grid($i);
-    }
-  }
-
-  .col-#{$i}-ml {
-    @media (max-width: ($large-breakpoint - 1px)) {
-      @include grid($i);
-    }
-  }
-}
-
-@for $i from 1 through 12 {
   .col-#{$i}-tab {
     @media (min-width: $tablet-breakpoint) {
-      @include grid($i);
-    }
-  }
-
-  .col-#{$i}-tab-md {
-    @media (min-width: $tablet-breakpoint) and (max-width: ($desktop-breakpoint - 1px)) {
-      @include grid($i);
-    }
-  }
-
-  .col-#{$i}-tab-ml {
-    @media (min-width: $tablet-breakpoint) and (max-width: ($large-breakpoint - 1px)) {
       @include grid($i);
     }
   }
@@ -105,12 +92,6 @@ $gutter-space-large: 24;
 @for $i from 1 through 12 {
   .col-#{$i}-desk {
     @media (min-width: $desktop-breakpoint) {
-      @include grid($i);
-    }
-  }
-
-  .col-#{$i}-desk-ml {
-    @media (min-width: $desktop-breakpoint) and (max-width: ($large-breakpoint - 1px)) {
       @include grid($i);
     }
   }
