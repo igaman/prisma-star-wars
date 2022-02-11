@@ -19,7 +19,7 @@
     "csswring": "^6.0.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
-    "node-sass": "^4.5.3",
+    "node-sass": "^7.0.0",
     "optimize-css-assets-webpack-plugin": "^2.0.0",
     "postcss-loader": "^2.0.6",
     "postcss-merge-rules": "^2.1.2",
